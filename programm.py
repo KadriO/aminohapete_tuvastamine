@@ -24,7 +24,7 @@ def vaheta_aminohape():
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
     tahvel.itemconfigure(pildi_id, image=aminohape)
-
+    #teeb lahtri tühjaks
     ah_lahter_id.delete(0, END)
 
 
@@ -37,11 +37,12 @@ def salvesta():
         else:
             tulemused.append(1)
     else:
+        #teeb tahvli tühjaks
         tahvel.delete("all")
         nupp.place_forget()
         silt.place_forget()
         ah_lahter_id.place_forget()
-        #kustutada ah_pilt, kustutada nupp, kustutada, kustutada silt, kustutada lahter
+        #lisab tahvlile uue sisu
         silt3 = Label(raam, background="white", text="Mäng on läbi!")
         silt3.place(x=230, y=110)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
@@ -50,7 +51,6 @@ def salvesta():
 
     print(tulemused)
     vaheta_aminohape()
-
 
 #Programm
 raam = Tk()
@@ -84,4 +84,5 @@ ah_lahter_id.place(x=300, y=130, width=150)
 #nupp:
 nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
 nupp.place(x=330, y=170, width=100)
+
 raam.mainloop()
