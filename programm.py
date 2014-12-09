@@ -38,13 +38,15 @@ def salvesta():
             tulemused.append(1)
     else:
         #siinmail peaks kuidagi ära lõpetama, nt kirjutama skoori
-        raam = Tk()
-        raam.title("Aminohapete mäng")
-        tahvel = Canvas(raam, width= 550, height= 300, background = "white")
-        tahvel.grid()
+        #raam = Tk()
+        #raam.title("Aminohapete mäng")
+        tahvel.delete("all")
+        nupp.place_forget()
+        silt.place_forget()
+        ah_lahter_id.place_forget()
         #kustutada ah_pilt, kustutada nupp, kustutada, kustutada silt, kustutada lahter
-        silt = Label(raam, background="white", text="Mäng on läbi!")
-        silt.place(x=230, y=110)
+        silt1 = Label(raam, background="white", text="Mäng on läbi!")
+        silt1.place(x=230, y=110)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
@@ -59,7 +61,7 @@ raam.title("Aminohapete mäng")
 tahvel = Canvas(raam, width= 550, height= 300, background = "white")
 tahvel.grid()
 
-aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüteiin", "glutamiin", "glutamiinhape", "glütsiin",
+aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteiin", "glutamiin", "glutamiinhape", "glütsiin",
 "histidiin", "isoleutsiin", "leutsiin", "lüsiin", "metioniin", "fenüülalaniin", "proliin", "seriin",
 "treoniin", "trüptofaan", "türosiin", "valiin", "selenotsüsteiin", "pürrolüsiin"]
 
