@@ -14,15 +14,19 @@ def fn_kontrolli(sisestus, ah_nimi):
 #funktsioon vahetab aminohappe pildi
 def vaheta_aminohape():
     global aminohape
+    global ah_number
+    global ah_nimi
     ah_number = randint(0, len(aminohapped)-1)
     ah_nimi = aminohapped[ah_number]
+    print(ah_nimi)
+    print(ah_number)
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
     tahvel.itemconfigure(pildi_id, image=aminohape)
 
     ah_lahter_id.delete(0, END)
-    return ah_number
+
 
 def salvesta():
     sisestus = ah_lahter_id.get()
@@ -38,6 +42,7 @@ def salvesta():
         raam.title("Aminohapete mäng")
         tahvel = Canvas(raam, width= 550, height= 300, background = "white")
         tahvel.grid()
+        #kustutada ah_pilt, kustutada nupp, kustutada, kustutada silt, kustutada lahter
         silt = Label(raam, background="white", text="Mäng on läbi!")
         silt.place(x=230, y=110)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
