@@ -37,16 +37,13 @@ def salvesta():
         else:
             tulemused.append(1)
     else:
-        #siinmail peaks kuidagi ära lõpetama, nt kirjutama skoori
-        #raam = Tk()
-        #raam.title("Aminohapete mäng")
         tahvel.delete("all")
         nupp.place_forget()
         silt.place_forget()
         ah_lahter_id.place_forget()
         #kustutada ah_pilt, kustutada nupp, kustutada, kustutada silt, kustutada lahter
-        silt1 = Label(raam, background="white", text="Mäng on läbi!")
-        silt1.place(x=230, y=110)
+        silt3 = Label(raam, background="white", text="Mäng on läbi!")
+        silt3.place(x=230, y=110)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
