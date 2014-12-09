@@ -20,10 +20,12 @@ def vaheta_aminohape():
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
     tahvel.itemconfigure(pildi_id, image=aminohape)
+
+    ah_lahter_id.delete(0, END)
     return ah_number
 
 def salvesta():
-    sisestus = ah_lahter.get()
+    sisestus = ah_lahter_id.get()
     tulemus = fn_kontrolli(sisestus.lower(), ah_nimi)
     if len(tulemused)<10:
         if tulemus == False:
@@ -73,13 +75,9 @@ pildi_id = tahvel.create_image(30, 130, anchor = W, image= aminohape)
 silt = Label(raam, background="white", text="Kirjuta aminohappe nimi:")
 silt.place(x=300, y=110)
 #tekstikasti tegemine:
-ah_lahter = ttk.Entry(raam)
-ah_lahter.place(x=300, y=130, width=150)
+ah_lahter_id = ttk.Entry(raam)
+ah_lahter_id.place(x=300, y=130, width=150)
 #nupp:
 nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
 nupp.place(x=330, y=170, width=100)
 raam.mainloop()
-
-
-
-
