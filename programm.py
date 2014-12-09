@@ -1,3 +1,4 @@
+__author__ = 'Ahto'
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
@@ -20,7 +21,7 @@ def ajaloendur(piiratud_aeg) :
         ajaloendur(piiratud_aeg-1)
 
 #funktsioon vahetab aminohappe pildi
-        
+
 def vaheta_aminohape():
     global aminohape
     ah_number = randint(0, len(aminohapped)-1)
@@ -35,7 +36,7 @@ def uuenda2(ajalimiit):
     tagasiside = ajaloendur(ajalimiit)
     if tagasiside == True:
         vaheta_aminohape()
-    
+
 
 def salvesta():
     sisestus = ah_lahter.get()
@@ -56,7 +57,7 @@ def salvesta():
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
-        
+
         #if "valed_vastused" not in tulemused:
             #tulemused["valed_vastused"] = 1
         #else:
