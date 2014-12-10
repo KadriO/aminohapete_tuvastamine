@@ -58,17 +58,17 @@ def põhi_programm():
     print(ah_nimi)
     print(ah_number)
 
+    global pildi_id
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
-
-    global pildi_id
     pildi_id = tahvel.create_image(30, 130, anchor = W, image= aminohape)
 
 #sildi tegemine:
     global silt
     silt = Label(raam, background="white", text="Kirjuta aminohappe nimi:")
     silt.place(x=300, y=110)
+
 #tekstikasti tegemine:
     global ah_lahter_id
     ah_lahter_id = ttk.Entry(raam)
@@ -77,6 +77,7 @@ def põhi_programm():
     global nupp
     nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
     nupp.place(x=330, y=170, width=100)
+    pildi_id.pack()
 
 # see funktsioon käivitatakse nupule klõpsamisel
 def raskusaste():
@@ -129,14 +130,14 @@ ah_number = ""
 # loome akna
 raam = Tk()
 raam.title("Aminohapete mäng")
-tahvel = Canvas(raam, width= 550, height= 300)
+tahvel = Canvas(raam, width= 550, height= 300, background= "white")
 tahvel.grid()
 
 #aminohappe pilt tahvlile
-#normaal_suurus = Image.open("pildid/aminohape.png")
-#muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
-#aminohape = ImageTk.PhotoImage(muudetud)
-#pilt = tahvel.create_image(175, 100, anchor = W, image= aminohape)
+normaal_suurus = Image.open("pildid/aminohape.png")
+muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
+aminohape = ImageTk.PhotoImage(muudetud)
+pilt = tahvel.create_image(175, 100, anchor = W, image= aminohape)
 
 #radiobutton
 v = IntVar()
