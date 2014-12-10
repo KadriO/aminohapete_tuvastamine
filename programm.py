@@ -31,12 +31,14 @@ def vaheta_aminohape():
 def salvesta():
     sisestus = ah_lahter_id.get()
     tulemus = fn_kontrolli(sisestus.lower(), ah_nimi)
-    if len(tulemused)<10:
+    if len(tulemused)<=9:
         if tulemus == False:
             tulemused.append(0)
+            #print(tulemused)
         else:
             tulemused.append(1)
-    else:
+            #print(tulemused)
+    if len(tulemused)==10:
         #teeb tahvli tühjaks
         tahvel.delete("all")
         nupp.place_forget()
