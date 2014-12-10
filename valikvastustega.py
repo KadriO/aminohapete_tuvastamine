@@ -17,6 +17,23 @@ def rea_numbrite_leidmine():
         if len(rea_numbrid)==3:
             return rea_numbrid
 
+def esimene_vastusevariant():
+    global ah_number
+    while True:
+        esimene_number = randint(0, len(aminohapped)-1)
+        if esimene_number != ah_number:
+            esimene_valik = aminohapped[esimene_number]
+            return esimene_valik, esimene_number
+
+def teine_vastusevariant():
+    global ah_number
+    global esimene_number
+    while True:
+        teine_number = randint(0, len(aminohapped)-1)
+        if teine_number != ah_number and teine_number != esimene_number:
+            teine_valik = aminohapped[teine_number]
+            return teine_valik
+
 def vastuse_kontroll():
     global v
     global ah_nimi
@@ -37,14 +54,17 @@ def vaheta_valikvastused():
     global v
     global rea_numbrid
     v = StringVar()
-    esimene_number = randint(0, len(aminohapped)-1)
-    if esimene_number == ah_number:
-        esimene_number = randint(0, len(aminohapped)-1)
-    esimene_valik = aminohapped[esimene_number]
-    teine_number = randint(0, len(aminohapped)-1)
-    if teine_number == ah_number or teine_number == esimene_number:
-        teine_number = randint(0, len(aminohapped)-1)
-    teine_valik = aminohapped[teine_number]
+    esimene_valik, esimene_number = esimene_vastusevariant()
+    teine_valik = teine_vastusevariant()
+    #esimene_number = randint(0, len(aminohapped)-1)
+    #if esimene_number == ah_number:
+        #esimene_number = randint(0, len(aminohapped)-1)
+    #esimene_valik = aminohapped[esimene_number]
+    #teine_number = randint(0, len(aminohapped)-1)
+    #if teine_number == ah_number or teine_number == esimene_number:
+        #teine_number = randint(0, len(aminohapped)-1)
+    #teine_valik = aminohapped[teine_number]
+
     #kustutab eelnevad vastusevariandid ära
     nupp_1.destroy()
     nupp_2.destroy()
@@ -57,19 +77,21 @@ def vaheta_valikvastused():
     nupp_2.grid(row=rea_numbrid[1], sticky=(N))
     nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
     nupp_3.grid(row=rea_numbrid[2], sticky=(N))
-    #esimene nupp jääb valituks
-    nupp_3.select()
-    nupp_2.select()
-    nupp_1.select()
 
 def vaheta_aminohape():
     global aminohape
     global ah_number
     global ah_nimi
-    ah_number = randint(0, len(aminohapped)-1)
-    ah_nimi = aminohapped[ah_number]
+    global valitud_aminohapped
+    while True:
+        ah_number = randint(0, len(aminohapped)-1)
+        ah_nimi = aminohapped[ah_number]
+        if ah_nimi not in valitud_aminohapped:
+            break
+    valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
     print(ah_number)
+    print(valitud_aminohapped)
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
@@ -113,12 +135,15 @@ aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteii
 
 tulemused = []
 rea_numbrid = []
+valitud_aminohapped = []
 
 #Pildi kuvamine
 ah_number = randint(0, len(aminohapped)-1)
 ah_nimi = aminohapped[ah_number]
+valitud_aminohapped.append(ah_nimi)
 print(ah_nimi)
 print(ah_number)
+print(valitud_aminohapped)
 
 normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
 muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
@@ -127,11 +152,9 @@ pilt = tahvel.create_image(100, 100, anchor = W, image= aminohape)
 
 #Kahe aminohappe määramine valikvastuseks
 v = StringVar()
-esimene_number = randint(0, len(aminohapped)-1)
-esimene_valik = aminohapped[esimene_number]
 
-teine_number = randint(0, len(aminohapped)-1)
-teine_valik = aminohapped[teine_number]
+esimene_valik, esimene_number = esimene_vastusevariant()
+teine_valik = teine_vastusevariant()
 
 rea_numbrid = rea_numbrite_leidmine()
 #Valikvastused
@@ -141,10 +164,6 @@ nupp_2 = Radiobutton(raam, text=teine_valik, variable = v, value=teine_valik)
 nupp_2.grid(row=rea_numbrid[1], sticky=(N))
 nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
 nupp_3.grid(row=rea_numbrid[2], sticky=(N))
-#esimene nupp jääb valituks
-nupp_3.select()
-nupp_2.select()
-nupp_1.select()
 
 nupp = ttk.Button(raam, text="Edasi", command = salvesta_vastus)
 nupp.place(x=270, y=220, width=100)
