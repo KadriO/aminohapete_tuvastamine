@@ -47,17 +47,12 @@ def salvesta():
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
-
     print(tulemused)
     vaheta_aminohape()
 
 def põhi_programm():
-    aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteiin", "glutamiin", "glutamiinhape", "glütsiin",
-"histidiin", "isoleutsiin", "leutsiin", "lüsiin", "metioniin", "fenüülalaniin", "proliin", "seriin",
-"treoniin", "trüptofaan", "türosiin", "valiin", "selenotsüsteiin", "pürrolüsiin"]
-
-    tulemused = []
-
+    global ah_number
+    global ah_nimi
     ah_number = randint(0, len(aminohapped)-1)
     ah_nimi = aminohapped[ah_number]
     print(ah_nimi)
@@ -67,33 +62,21 @@ def põhi_programm():
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
 
+    global pildi_id
     pildi_id = tahvel.create_image(30, 130, anchor = W, image= aminohape)
 
 #sildi tegemine:
+    global silt
     silt = Label(raam, background="white", text="Kirjuta aminohappe nimi:")
     silt.place(x=300, y=110)
 #tekstikasti tegemine:
+    global ah_lahter_id
     ah_lahter_id = ttk.Entry(raam)
     ah_lahter_id.place(x=300, y=130, width=150)
 #nupp:
+    global nupp
     nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
     nupp.place(x=330, y=170, width=100)
-
-#Raskusastmed, kõige raskema puhul vihjeid ei pane, kergemal tasemel on vihjeks/
-#aminohappe kolmetäheline lühend, keskmisel ühetäheline
-
-sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
-    , "asparagiinhape": "Asp", "Glutamiin": "Gln", "Glutamiinhape": "Glu",
-    "glütsiin": "Gly", "histidiin": "His", "isoleutsiin": "Ile", "leutsiin": "Leu",
-    "lüsiin": "Lys", "metioniin": "Met", "fenüülalaniin": "Phe", "proliin": "Pro",
-    "seriin": "Ser", "treoniin": "Thr", "trüptofaan": "Trp", "tsüsteiin": "Cys",
-    "türosiin": "Tyr", "valiin": "Val", "selenotsüsteiin": "Sec", "pürrolüsiin": "Pyl"}
-sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
-    "asparagiinhape": "D", "glutamiin": "Q", "glutamiinhape": "E", "glütsiin": "G",
-    "Histidiin": "H", "Isoleutsiin": "I", "Leutsiin": "L", "Lüsiin": "K", "Metioniin": "M",
-    "fenüülalaniin": "F", "proliin": "P", "seriin": "S", "treoniin": "T", "trüptofaan": "W",
-    "tsüsteiin": "C", "türosiin": "Y", "valiin": "V", "selenotsüsteiin": "U",
-                   "pürrolüsiin": "O"}
 
 # see funktsioon käivitatakse nupule klõpsamisel
 def raskusaste():
@@ -118,6 +101,30 @@ def raskusaste():
     nupp2.destroy()
     nupp3.destroy()
     põhi_programm()
+
+aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteiin", "glutamiin", "glutamiinhape", "glütsiin",
+"histidiin", "isoleutsiin", "leutsiin", "lüsiin", "metioniin", "fenüülalaniin", "proliin", "seriin",
+"treoniin", "trüptofaan", "türosiin", "valiin", "selenotsüsteiin", "pürrolüsiin"]
+
+#Raskusastmed, kõige raskema puhul vihjeid ei pane, kergemal tasemel on vihjeks/
+#aminohappe kolmetäheline lühend, keskmisel ühetäheline
+
+sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
+    , "asparagiinhape": "Asp", "Glutamiin": "Gln", "Glutamiinhape": "Glu",
+    "glütsiin": "Gly", "histidiin": "His", "isoleutsiin": "Ile", "leutsiin": "Leu",
+    "lüsiin": "Lys", "metioniin": "Met", "fenüülalaniin": "Phe", "proliin": "Pro",
+    "seriin": "Ser", "treoniin": "Thr", "trüptofaan": "Trp", "tsüsteiin": "Cys",
+    "türosiin": "Tyr", "valiin": "Val", "selenotsüsteiin": "Sec", "pürrolüsiin": "Pyl"}
+sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
+    "asparagiinhape": "D", "glutamiin": "Q", "glutamiinhape": "E", "glütsiin": "G",
+    "Histidiin": "H", "Isoleutsiin": "I", "Leutsiin": "L", "Lüsiin": "K", "Metioniin": "M",
+    "fenüülalaniin": "F", "proliin": "P", "seriin": "S", "treoniin": "T", "trüptofaan": "W",
+    "tsüsteiin": "C", "türosiin": "Y", "valiin": "V", "selenotsüsteiin": "U",
+                   "pürrolüsiin": "O"}
+
+tulemused = []
+ah_nimi = ""
+ah_number = ""
 
 # loome akna
 raam = Tk()
