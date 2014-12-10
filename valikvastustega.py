@@ -56,15 +56,6 @@ def vaheta_valikvastused():
     v = StringVar()
     esimene_valik, esimene_number = esimene_vastusevariant()
     teine_valik = teine_vastusevariant()
-    #esimene_number = randint(0, len(aminohapped)-1)
-    #if esimene_number == ah_number:
-        #esimene_number = randint(0, len(aminohapped)-1)
-    #esimene_valik = aminohapped[esimene_number]
-    #teine_number = randint(0, len(aminohapped)-1)
-    #if teine_number == ah_number or teine_number == esimene_number:
-        #teine_number = randint(0, len(aminohapped)-1)
-    #teine_valik = aminohapped[teine_number]
-
     #kustutab eelnevad vastusevariandid ära
     nupp_1.destroy()
     nupp_2.destroy()
