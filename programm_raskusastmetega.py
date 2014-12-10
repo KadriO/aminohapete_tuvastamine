@@ -50,7 +50,8 @@ def salvesta():
         nupp.place_forget()
         silt.place_forget()
         ah_lahter_id.place_forget()
-        vihje_silt.place_forget()
+        if vihje == True:
+            vihje_silt.place_forget()
         #lisab tahvlile uue sisu
         silt3 = Label(raam, background="white", text="Mäng on läbi!")
         silt3.place(x=230, y=110)
@@ -69,14 +70,15 @@ def põhi_programm():
     print(ah_number)
 
     global vihje
+    global vihje_silt
     if vihje == True:
         global sonastik
-        global vihje_silt
         vihje_sone = sonastik[ah_nimi]
         vihje_silt = Label(raam, background="white", text="Vihje: "+vihje_sone)
         vihje_silt.place(x=300, y=200)
 
     global pildi_id
+    global aminohape
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
@@ -95,26 +97,25 @@ def põhi_programm():
     global nupp
     nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
     nupp.place(x=330, y=170, width=100)
-    pildi_id.pack()
+    #pildi_id.pack()
 
 # see funktsioon käivitatakse nupule klõpsamisel
 def raskusaste():
     global vihje
+    global sonastik
     if v.get()== 1:
         vihje = True
         print("kas töötab?")
-        global sonastik
         sonastik = sonastik_lihtsam
         print(sonastik)
     elif v.get() == 2:
         vihje = True
         print("vist töötab")
-        global sonastik
         sonastik = sonastik_keskmine
         print(sonastik)
     elif v.get() == 3:
         vihje = False
-        return
+        sonastik = sonastik  #prooviks
         #ei muuda midagi
     #teen tahvli tühjaks
     tahvel.delete("all")
@@ -133,7 +134,7 @@ aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteii
 
 #Raskusastmed, kõige raskema puhul vihjeid ei pane, kergemal tasemel on vihjeks/
 #aminohappe kolmetäheline lühend, keskmisel ühetäheline
-
+sonastik = {}
 sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
     , "asparagiinhape": "Asp", "glutamiin": "Gln", "glutamiinhape": "Glu",
     "glütsiin": "Gly", "histidiin": "His", "isoleutsiin": "Ile", "leutsiin": "Leu",
