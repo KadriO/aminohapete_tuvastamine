@@ -26,6 +26,14 @@ def vaheta_aminohape():
     #teeb lahtri tühjaks
     ah_lahter_id.delete(0, END)
 
+    global vihje
+    if vihje == True:
+        global sonastik
+        global vihje_silt
+        vihje_sone = sonastik[ah_nimi]
+        vihje_silt = Label(raam, background="white", text="Vihje: "+vihje_sone)
+        vihje_silt.place(x=300, y=200)
+
 
 def salvesta():
     sisestus = ah_lahter_id.get()
@@ -36,11 +44,13 @@ def salvesta():
         else:
             tulemused.append(1)
     else:
+        global vihje_silt
         #teeb tahvli tühjaks
         tahvel.delete("all")
         nupp.place_forget()
         silt.place_forget()
         ah_lahter_id.place_forget()
+        vihje_silt.place_forget()
         #lisab tahvlile uue sisu
         silt3 = Label(raam, background="white", text="Mäng on läbi!")
         silt3.place(x=230, y=110)
@@ -57,6 +67,14 @@ def põhi_programm():
     ah_nimi = aminohapped[ah_number]
     print(ah_nimi)
     print(ah_number)
+
+    global vihje
+    if vihje == True:
+        global sonastik
+        global vihje_silt
+        vihje_sone = sonastik[ah_nimi]
+        vihje_silt = Label(raam, background="white", text="Vihje: "+vihje_sone)
+        vihje_silt.place(x=300, y=200)
 
     global pildi_id
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
@@ -81,15 +99,21 @@ def põhi_programm():
 
 # see funktsioon käivitatakse nupule klõpsamisel
 def raskusaste():
+    global vihje
     if v.get()== 1:
+        vihje = True
         print("kas töötab?")
+        global sonastik
         sonastik = sonastik_lihtsam
         print(sonastik)
     elif v.get() == 2:
+        vihje = True
         print("vist töötab")
+        global sonastik
         sonastik = sonastik_keskmine
         print(sonastik)
     elif v.get() == 3:
+        vihje = False
         return
         #ei muuda midagi
     #teen tahvli tühjaks
@@ -111,14 +135,14 @@ aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteii
 #aminohappe kolmetäheline lühend, keskmisel ühetäheline
 
 sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
-    , "asparagiinhape": "Asp", "Glutamiin": "Gln", "Glutamiinhape": "Glu",
+    , "asparagiinhape": "Asp", "glutamiin": "Gln", "glutamiinhape": "Glu",
     "glütsiin": "Gly", "histidiin": "His", "isoleutsiin": "Ile", "leutsiin": "Leu",
     "lüsiin": "Lys", "metioniin": "Met", "fenüülalaniin": "Phe", "proliin": "Pro",
     "seriin": "Ser", "treoniin": "Thr", "trüptofaan": "Trp", "tsüsteiin": "Cys",
     "türosiin": "Tyr", "valiin": "Val", "selenotsüsteiin": "Sec", "pürrolüsiin": "Pyl"}
 sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
     "asparagiinhape": "D", "glutamiin": "Q", "glutamiinhape": "E", "glütsiin": "G",
-    "Histidiin": "H", "Isoleutsiin": "I", "Leutsiin": "L", "Lüsiin": "K", "Metioniin": "M",
+    "histidiin": "H", "isoleutsiin": "I", "leutsiin": "L", "lüsiin": "K", "metioniin": "M",
     "fenüülalaniin": "F", "proliin": "P", "seriin": "S", "treoniin": "T", "trüptofaan": "W",
     "tsüsteiin": "C", "türosiin": "Y", "valiin": "V", "selenotsüsteiin": "U",
                    "pürrolüsiin": "O"}
