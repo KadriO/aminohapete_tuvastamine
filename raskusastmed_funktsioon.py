@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-#from tkinter import messagebox
 from random import randint
 
 def fn_kontrolli(sisestus, ah_nimi):
@@ -68,8 +67,6 @@ def salvesta():
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
     print(tulemused)
-    #if len(tulemused)<=9:
-        #vaheta_aminohape()
 
 def põhi_programm():
     global ah_number
@@ -110,7 +107,6 @@ def põhi_programm():
     global nupp
     nupp = ttk.Button(raam, text="Salvesta vastus", command = salvesta)
     nupp.place(x=330, y=170, width=100)
-    #pildi_id.pack()
 
 # see funktsioon käivitatakse nupule klõpsamisel
 def raskusaste():
@@ -130,6 +126,7 @@ def raskusaste():
         vihje = False
         sonastik = sonastik  #prooviks
         #ei muuda midagi
+
     #teen tahvli tühjaks
     tahvel.delete("all")
     nupp.place_forget()
@@ -141,61 +138,77 @@ def raskusaste():
     nupp3.destroy()
     põhi_programm()
 
-aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteiin", "glutamiin", "glutamiinhape", "glütsiin",
+def raskusastmed_fn():
+    global aminohapped
+    aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteiin", "glutamiin", "glutamiinhape", "glütsiin",
 "histidiin", "isoleutsiin", "leutsiin", "lüsiin", "metioniin", "fenüülalaniin", "proliin", "seriin",
 "treoniin", "trüptofaan", "türosiin", "valiin", "selenotsüsteiin", "pürrolüsiin"]
 
 #Raskusastmed, kõige raskema puhul vihjeid ei pane, kergemal tasemel on vihjeks/
 #aminohappe kolmetäheline lühend, keskmisel ühetäheline
-sonastik = {}
-sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
+    global sonastik
+    sonastik = {}
+
+    global sonastik_lihtsam
+    sonastik_lihtsam ={"alaniin": "Ala", "arginiin": "Arg", "asparagiin": "Asn"
     , "asparagiinhape": "Asp", "glutamiin": "Gln", "glutamiinhape": "Glu",
     "glütsiin": "Gly", "histidiin": "His", "isoleutsiin": "Ile", "leutsiin": "Leu",
     "lüsiin": "Lys", "metioniin": "Met", "fenüülalaniin": "Phe", "proliin": "Pro",
     "seriin": "Ser", "treoniin": "Thr", "trüptofaan": "Trp", "tsüsteiin": "Cys",
     "türosiin": "Tyr", "valiin": "Val", "selenotsüsteiin": "Sec", "pürrolüsiin": "Pyl"}
-sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
+
+    global sonastik_keskmine
+    sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
     "asparagiinhape": "D", "glutamiin": "Q", "glutamiinhape": "E", "glütsiin": "G",
     "histidiin": "H", "isoleutsiin": "I", "leutsiin": "L", "lüsiin": "K", "metioniin": "M",
     "fenüülalaniin": "F", "proliin": "P", "seriin": "S", "treoniin": "T", "trüptofaan": "W",
-    "tsüsteiin": "C", "türosiin": "Y", "valiin": "V", "selenotsüsteiin": "U",
-                   "pürrolüsiin": "O"}
+    "tsüsteiin": "C", "türosiin": "Y", "valiin": "V", "selenotsüsteiin": "U","pürrolüsiin": "O"}
 
-tulemused = []
-ah_nimi = ""
-ah_number = ""
-valitud_aminohapped = []
+    global tulemused
+    tulemused = []
+    global ah_nimi
+    ah_nimi = ""
+    global ah_number
+    ah_number = ""
+    global valitud_aminohapped
+    valitud_aminohapped = []
 
 # loome akna
-raam = Tk()
-raam.title("Aminohapete mäng")
-tahvel = Canvas(raam, width= 550, height= 300, background= "white")
-tahvel.grid()
+    global raam
+    raam = Tk()
+    raam.title("Aminohapete mäng")
+    global tahvel
+    tahvel = Canvas(raam, width= 550, height= 300, background= "white")
+    tahvel.grid()
 
 #aminohappe pilt tahvlile
-normaal_suurus = Image.open("pildid/aminohape.png")
-muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
-aminohape = ImageTk.PhotoImage(muudetud)
-pilt = tahvel.create_image(175, 100, anchor = W, image= aminohape)
+    normaal_suurus = Image.open("pildid/aminohape.png")
+    muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
+    aminohape = ImageTk.PhotoImage(muudetud)
+    global pilt
+    pilt = tahvel.create_image(175, 100, anchor = W, image= aminohape)
 
 #radiobutton
-v = IntVar()
-#IntVar (või StringVar) väärtuseks on hetkel valitud radiobuttoni value.
-#Selle järgi saab kindlaks teha, milline on valitud.
-#Submit nupp on tavaline nupp. Peale submit vajutamist kontrollid IntVar väärtust.
-
+    global v
+    v = IntVar()
 #Iga nupp on kahel real, et saaksin kasutada destroy() käsku
-nupp1 = Radiobutton(raam, text="Kerge", variable=v, value=1)
-nupp1.grid(row=1)
-nupp2 = Radiobutton(raam, text="Keskmine", variable=v, value=2)
-nupp2.grid(row=2)
-nupp3 = Radiobutton(raam, text="Raske", variable=v, value=3)
-nupp3.grid(row=3)
+    global nupp1
+    nupp1 = Radiobutton(raam, text="Kerge", variable=v, value=1)
+    nupp1.grid(row=1)
+    global nupp2
+    nupp2 = Radiobutton(raam, text="Keskmine", variable=v, value=2)
+    nupp2.grid(row=2)
+    global nupp3
+    nupp3 = Radiobutton(raam, text="Raske", variable=v, value=3)
+    nupp3.grid(row=3)
 
 # loome nupu
-nupp = ttk.Button(raam, text="Valmis", command=raskusaste)
+    global nupp
+    nupp = ttk.Button(raam, text="Valmis", command=raskusaste)
 #Button(raam, text="Tervita!", command=lambda: tervita(argument))
-nupp.place(x=200, y=200, width=150)
+    nupp.place(x=200, y=200, width=150)
 
 # ilmutame akna ekraanile
-raam.mainloop()
+    raam.mainloop()
+
+raskusastmed_fn()
