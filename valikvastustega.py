@@ -5,6 +5,18 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from random import randint
 
+#rea numbri määramine
+def rea_numbrite_leidmine():
+    global rea_numbrid
+    #teen eelneva list tühjaks
+    del rea_numbrid[:]
+    while True:
+        rea_number = randint(1,3)
+        if rea_number not in rea_numbrid:
+            rea_numbrid.append(rea_number)
+        if len(rea_numbrid)==3:
+            return rea_numbrid
+
 def vastuse_kontroll():
     global v
     global ah_nimi
@@ -23,6 +35,7 @@ def vaheta_valikvastused():
     global nupp_2
     global nupp_3
     global v
+    global rea_numbrid
     v = StringVar()
     esimene_number = randint(0, len(aminohapped)-1)
     if esimene_number == ah_number:
@@ -32,15 +45,18 @@ def vaheta_valikvastused():
     if teine_number == ah_number or teine_number == esimene_number:
         teine_number = randint(0, len(aminohapped)-1)
     teine_valik = aminohapped[teine_number]
+    #kustutab eelnevad vastusevariandid ära
     nupp_1.destroy()
     nupp_2.destroy()
     nupp_3.destroy()
+    rea_numbrid = rea_numbrite_leidmine()
+    #lisab uued vastusevariandid
     nupp_1 = Radiobutton(raam, text=esimene_valik, variable = v, value=esimene_valik)
-    nupp_1.grid(row=1, sticky=(N))
+    nupp_1.grid(row=rea_numbrid[0], sticky=(N))
     nupp_2 = Radiobutton(raam, text=teine_valik, variable = v, value=teine_valik)
-    nupp_2.grid(row=2, sticky=(N))
+    nupp_2.grid(row=rea_numbrid[1], sticky=(N))
     nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
-    nupp_3.grid(row=3, sticky=(N))
+    nupp_3.grid(row=rea_numbrid[2], sticky=(N))
 
 def vaheta_aminohape():
     global aminohape
@@ -58,6 +74,9 @@ def vaheta_aminohape():
     vaheta_valikvastused()
 
 def salvesta_vastus():
+    global nupp_1
+    global nupp_2
+    global nupp_3
     tulemus = vastuse_kontroll()
     if len(tulemused)<=9:
         if tulemus == False:
@@ -68,18 +87,14 @@ def salvesta_vastus():
     if len(tulemused)==10:
         tahvel.delete("all")
         nupp.place_forget()
-        #nende nuppude kustutamine ei tööta
-        global nupp_1
-        global nupp_2
-        global nupp_3
         nupp_1.destroy()
         nupp_2.destroy()
         nupp_3.destroy()
         silt3 = Label(raam, background="white", text="Mäng on läbi!")
-        silt3.place(x=230, y=110)
+        silt3.place(x=160, y=80)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
-        silt2.place(x=220, y=140)
+        silt2.place(x=150, y=100)
     print(tulemused)
 
 
@@ -93,6 +108,7 @@ aminohapped = ["alaniin", "arginiin", "asparagiin", "asparagiinhape", "tsüsteii
 "treoniin", "trüptofaan", "türosiin", "valiin", "selenotsüsteiin", "pürrolüsiin"]
 
 tulemused = []
+rea_numbrid = []
 
 #Pildi kuvamine
 ah_number = randint(0, len(aminohapped)-1)
@@ -113,13 +129,14 @@ esimene_valik = aminohapped[esimene_number]
 teine_number = randint(0, len(aminohapped)-1)
 teine_valik = aminohapped[teine_number]
 
+rea_numbrid = rea_numbrite_leidmine()
 #Valikvastused
 nupp_1 = Radiobutton(raam, text=esimene_valik, variable = v, value=esimene_valik)
-nupp_1.grid(row=1, sticky=(N))
+nupp_1.grid(row=rea_numbrid[0], sticky=(N))
 nupp_2 = Radiobutton(raam, text=teine_valik, variable = v, value=teine_valik)
-nupp_2.grid(row=2, sticky=(N))
+nupp_2.grid(row=rea_numbrid[1], sticky=(N))
 nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
-nupp_3.grid(row=3, sticky=(N))
+nupp_3.grid(row=rea_numbrid[2], sticky=(N))
 
 nupp = ttk.Button(raam, text="Edasi", command = salvesta_vastus)
 nupp.place(x=270, y=220, width=100)
