@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from random import randint
 
 def vastuse_kontroll():
+    global v
     global ah_nimi
     vastus = False
     if v.get() == ah_nimi:
@@ -13,6 +14,7 @@ def vastuse_kontroll():
     return vastus
 
 def vaheta_valikvastused():
+    global ah_nimi
     global esimene_valik
     global esimene_number
     global teine_valik
@@ -20,6 +22,7 @@ def vaheta_valikvastused():
     global nupp_1
     global nupp_2
     global nupp_3
+    global v
     v = StringVar()
     esimene_number = randint(0, len(aminohapped)-1)
     if esimene_number == ah_number:
@@ -56,25 +59,29 @@ def vaheta_aminohape():
 
 def salvesta_vastus():
     tulemus = vastuse_kontroll()
-    if len(tulemused)<10:
+    if len(tulemused)<=9:
         if tulemus == False:
             tulemused.append(0)
         else:
             tulemused.append(1)
-    else:
+        vaheta_aminohape()
+    if len(tulemused)==10:
         tahvel.delete("all")
         nupp.place_forget()
         #nende nuppude kustutamine ei tööta
-        #nupp_1.destroy()
-        #nupp_2.destroy()
-        #nupp_3.destroy()
+        global nupp_1
+        global nupp_2
+        global nupp_3
+        nupp_1.destroy()
+        nupp_2.destroy()
+        nupp_3.destroy()
         silt3 = Label(raam, background="white", text="Mäng on läbi!")
         silt3.place(x=230, y=110)
         silt2 = Label(raam, background="white", text="Sinu skoor on "+ \
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
     print(tulemused)
-    vaheta_aminohape()
+
 
 raam = Tk()
 raam.title("Aminohapete mäng")
