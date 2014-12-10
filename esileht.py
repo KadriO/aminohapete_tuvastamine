@@ -3,6 +3,10 @@ __author__ = 'Kadri'
 from tkinter import *
 from tkinter import ttk
 from tkinter import font
+from PIL import Image, ImageTk
+from random import randint
+from fn_valikvastused import rea_numbrite_leidmine, esimene_vastusevariant, teine_vastusevariant, \
+    vastuse_kontroll, vaheta_valikvastused, vaheta_aminohape, salvesta_vastus, fn_valikvastused
 
 raam = Tk()
 raam.title("Aminohapete mäng")
@@ -19,7 +23,7 @@ silt2.place(x=30, y=30)
 silt3 = ttk.Label(raam, text= "vajuta nuppu xxx. Soovides mängida xxx, vajuta nupule xxx", background="white")
 silt3.place(x=80, y=50)
 
-vasak_nupp = ttk.Button(raam, text="Vajuta mind")
+vasak_nupp = ttk.Button(raam, text="Vajuta mind", command= fn_valikvastused)
 vasak_nupp.place(x= 50, y= 150, width=100)
 
 vasak_nupp = ttk.Button(raam, text="Vajuta mind ka")
