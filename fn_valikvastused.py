@@ -69,7 +69,7 @@ def vaheta_valikvastused():
     nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
     nupp_3.grid(row=rea_numbrid[2], sticky=(N))
 
-def vaheta_aminohape():
+def vaheta_aminohape2():
     global aminohape
     global ah_number
     global ah_nimi
@@ -100,7 +100,7 @@ def salvesta_vastus():
             tulemused.append(0)
         else:
             tulemused.append(1)
-        vaheta_aminohape()
+        vaheta_aminohape2()
     if len(tulemused)==10:
         tahvel.delete("all")
         nupp.place_forget()
@@ -115,8 +115,10 @@ def salvesta_vastus():
     print(tulemused)
 
 def fn_valikvastused():
-    raam = Tk()
+    global raam
+    raam = Toplevel()
     raam.title("Aminohapete mäng")
+    global tahvel
     tahvel = Canvas(raam, width= 400, height= 200, background = "white")
     tahvel.grid()
 
@@ -159,6 +161,7 @@ def fn_valikvastused():
     esimene_valik, esimene_number = esimene_vastusevariant()
     teine_valik = teine_vastusevariant()
 
+    global rea_numbrid
     rea_numbrid = rea_numbrite_leidmine()
     #Valikvastused
     global nupp_1

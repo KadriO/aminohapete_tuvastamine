@@ -6,7 +6,8 @@ from tkinter import font
 from PIL import Image, ImageTk
 from random import randint
 from fn_valikvastused import rea_numbrite_leidmine, esimene_vastusevariant, teine_vastusevariant, \
-    vastuse_kontroll, vaheta_valikvastused, vaheta_aminohape, salvesta_vastus, fn_valikvastused
+    vastuse_kontroll, vaheta_valikvastused, vaheta_aminohape2, salvesta_vastus, fn_valikvastused
+from raskusastmed_funktsioon import fn_kontrolli, vaheta_aminohape, salvesta, põhi_programm, raskusaste, raskusastmed_fn
 
 raam = Tk()
 raam.title("Aminohapete mäng")
@@ -26,7 +27,7 @@ silt3.place(x=80, y=50)
 vasak_nupp = ttk.Button(raam, text="Vajuta mind", command= fn_valikvastused)
 vasak_nupp.place(x= 50, y= 150, width=100)
 
-vasak_nupp = ttk.Button(raam, text="Vajuta mind ka")
+vasak_nupp = ttk.Button(raam, text="Vajuta mind ka", command= raskusastmed_fn)
 vasak_nupp.place(x= 200, y= 150, width=100)
 
 raam.mainloop()

@@ -175,7 +175,7 @@ def raskusastmed_fn():
 
 # loome akna
     global raam
-    raam = Tk()
+    raam = Toplevel()
     raam.title("Aminohapete mäng")
     global tahvel
     tahvel = Canvas(raam, width= 550, height= 300, background= "white")
