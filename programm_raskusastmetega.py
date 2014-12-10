@@ -15,10 +15,16 @@ def vaheta_aminohape():
     global aminohape
     global ah_number
     global ah_nimi
-    ah_number = randint(0, len(aminohapped)-1)
-    ah_nimi = aminohapped[ah_number]
+    global valitud_aminohapped
+    while True:
+        ah_number = randint(0, len(aminohapped)-1)
+        ah_nimi = aminohapped[ah_number]
+        if ah_nimi not in valitud_aminohapped:
+            break
+    valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
     print(ah_number)
+    print(valitud_aminohapped)
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
@@ -68,10 +74,13 @@ def salvesta():
 def põhi_programm():
     global ah_number
     global ah_nimi
+    global valitud_aminohapped
     ah_number = randint(0, len(aminohapped)-1)
     ah_nimi = aminohapped[ah_number]
+    valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
     print(ah_number)
+    print(valitud_aminohapped)
 
     global vihje
     global vihje_silt
@@ -155,6 +164,7 @@ sonastik_keskmine = {"alaniin": "A", "arginiin": "R", "asparagiin": "N",
 tulemused = []
 ah_nimi = ""
 ah_number = ""
+valitud_aminohapped = []
 
 # loome akna
 raam = Tk()
