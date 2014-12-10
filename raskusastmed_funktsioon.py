@@ -51,7 +51,6 @@ def salvesta():
             tulemused.append(1)
         vaheta_aminohape()
     if len(tulemused)==10:
-        #global vihje
         global vihje_silt
         #teeb tahvli tühjaks
         tahvel.delete("all")
@@ -114,17 +113,13 @@ def raskusaste():
     global sonastik
     if v.get()== 1:
         vihje = True
-        print("kas töötab?")
         sonastik = sonastik_lihtsam
-        print(sonastik)
     elif v.get() == 2:
         vihje = True
-        print("vist töötab")
         sonastik = sonastik_keskmine
-        print(sonastik)
     elif v.get() == 3:
         vihje = False
-        sonastik = sonastik  #prooviks
+        #sonastik = sonastik
         #ei muuda midagi
 
     #teen tahvli tühjaks
@@ -205,10 +200,9 @@ def raskusastmed_fn():
 # loome nupu
     global nupp
     nupp = ttk.Button(raam, text="Valmis", command=raskusaste)
-#Button(raam, text="Tervita!", command=lambda: tervita(argument))
     nupp.place(x=200, y=200, width=150)
 
 # ilmutame akna ekraanile
     raam.mainloop()
 
-raskusastmed_fn()
+#raskusastmed_fn()

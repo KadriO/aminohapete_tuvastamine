@@ -5,10 +5,10 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from random import randint
 
-#rea numbri määramine
+#rea numbri määramine radio nuppude jaoks
 def rea_numbrite_leidmine():
     global rea_numbrid
-    #teen eelneva list tühjaks
+    #teen eelneva listi tühjaks
     del rea_numbrid[:]
     while True:
         rea_number = randint(1,3)
@@ -47,13 +47,14 @@ def vaheta_valikvastused():
     global esimene_valik
     global esimene_number
     global teine_valik
-    global teine_number
+    #global teine_number
     global nupp_1
     global nupp_2
     global nupp_3
     global v
     global rea_numbrid
     v = StringVar()
+    #loob uued valikvastused
     esimene_valik, esimene_number = esimene_vastusevariant()
     teine_valik = teine_vastusevariant()
     #kustutab eelnevad vastusevariandid ära
