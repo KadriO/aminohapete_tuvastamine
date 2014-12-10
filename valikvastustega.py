@@ -57,6 +57,10 @@ def vaheta_valikvastused():
     nupp_2.grid(row=rea_numbrid[1], sticky=(N))
     nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
     nupp_3.grid(row=rea_numbrid[2], sticky=(N))
+    #esimene nupp jääb valituks
+    nupp_3.select()
+    nupp_2.select()
+    nupp_1.select()
 
 def vaheta_aminohape():
     global aminohape
@@ -137,6 +141,10 @@ nupp_2 = Radiobutton(raam, text=teine_valik, variable = v, value=teine_valik)
 nupp_2.grid(row=rea_numbrid[1], sticky=(N))
 nupp_3 = Radiobutton(raam, text=ah_nimi, variable = v, value=ah_nimi)
 nupp_3.grid(row=rea_numbrid[2], sticky=(N))
+#esimene nupp jääb valituks
+nupp_3.select()
+nupp_2.select()
+nupp_1.select()
 
 nupp = ttk.Button(raam, text="Edasi", command = salvesta_vastus)
 nupp.place(x=270, y=220, width=100)
