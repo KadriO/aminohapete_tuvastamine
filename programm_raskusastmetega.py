@@ -27,9 +27,10 @@ def vaheta_aminohape():
     ah_lahter_id.delete(0, END)
 
     global vihje
+    global sonastik
+    global vihje_silt
     if vihje == True:
-        global sonastik
-        global vihje_silt
+        vihje_silt.place_forget()
         vihje_sone = sonastik[ah_nimi]
         vihje_silt = Label(raam, background="white", text="Vihje: "+vihje_sone)
         vihje_silt.place(x=300, y=200)
@@ -43,7 +44,9 @@ def salvesta():
             tulemused.append(0)
         else:
             tulemused.append(1)
+        vaheta_aminohape()
     if len(tulemused)==10:
+        #global vihje
         global vihje_silt
         #teeb tahvli tühjaks
         tahvel.delete("all")
@@ -59,7 +62,8 @@ def salvesta():
         str(tulemused.count(1))+"/"+str(tulemused.count(0)+tulemused.count(1)))
         silt2.place(x=220, y=140)
     print(tulemused)
-    vaheta_aminohape()
+    #if len(tulemused)<=9:
+        #vaheta_aminohape()
 
 def põhi_programm():
     global ah_number
