@@ -1,4 +1,3 @@
-__author__ = 'Kadri'
 
 from tkinter import *
 from tkinter import ttk
