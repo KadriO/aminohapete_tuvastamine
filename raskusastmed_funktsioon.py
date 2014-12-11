@@ -22,8 +22,8 @@ def vaheta_aminohape():
             break
     valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
-    print(ah_number)
-    print(valitud_aminohapped)
+    #print(ah_number)
+    #print(valitud_aminohapped)
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
@@ -75,8 +75,8 @@ def põhi_programm():
     ah_nimi = aminohapped[ah_number]
     valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
-    print(ah_number)
-    print(valitud_aminohapped)
+    #print(ah_number)
+    #print(valitud_aminohapped)
 
     global vihje
     global vihje_silt

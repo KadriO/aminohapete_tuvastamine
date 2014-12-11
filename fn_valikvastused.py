@@ -82,8 +82,8 @@ def vaheta_aminohape2():
             break
     valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
-    print(ah_number)
-    print(valitud_aminohapped)
+    #print(ah_number)
+    #print(valitud_aminohapped)
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
     muudetud = normaal_suurus.resize((200,150),Image.ANTIALIAS)
     aminohape = ImageTk.PhotoImage(muudetud)
@@ -142,8 +142,8 @@ def fn_valikvastused():
     ah_nimi = aminohapped[ah_number]
     valitud_aminohapped.append(ah_nimi)
     print(ah_nimi)
-    print(ah_number)
-    print(valitud_aminohapped)
+    #print(ah_number)
+    #print(valitud_aminohapped)
 
     global aminohape
     normaal_suurus = Image.open("pildid/"+ah_nimi+".png")
@@ -162,7 +162,7 @@ def fn_valikvastused():
     esimene_valik, esimene_number = esimene_vastusevariant()
     teine_valik = teine_vastusevariant()
 
-    global rea_numbrid
+    #global rea_numbrid
     rea_numbrid = rea_numbrite_leidmine()
     #Valikvastused
     global nupp_1
